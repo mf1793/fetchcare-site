@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FetchCare Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #333; line-height: 1.6; }
+        header, section { padding: 60px 20px; text-align: center; }
+        header { background-color: #f7faff; }
+        header h1 { font-size: 3em; color: #2b7a78; }
+        header p { font-size: 1.25em; margin: 20px 0; }
+        .cta-button { background-color: #2b7a78; color: white; padding: 14px 28px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; text-decoration: none; }
+        section.features, section.about, section.pricing, section.contact { background: #f0f4f8; }
+        section h2 { font-size: 2em; margin-bottom: 40px; }
+        .feature-grid, .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .feature, .pricing-plan { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .feature h3, .pricing-plan h3 { color: #2b7a78; margin-bottom: 10px; }
+        .about p { max-width: 800px; margin: 0 auto 20px; font-size: 1.1em; }
+        .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
+        .contact-form label { display: block; margin-bottom: 5px; margin-top: 20px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .contact-form button { background-color: #2b7a78; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FetchCare Solutions</h1>
+    <p>Smarter Tools. Healthier Pets.</p>
+    <a class="cta-button" href="#contact">Book a Demo</a>
+</header>
+
+<section class="about" id="about">
+    <h2>About Us</h2>
+    <p>FetchCare Solutions is a tech-driven company dedicated to helping veterinary clinics thrive by automating tasks, improving client engagement, and simplifying practice management. Our goal is to give care providers more time to focus on what matters most—caring for pets.</p>
+</section>
+
+<section class="features">
+    <h2>What We Offer</h2>
+    <div class="feature-grid">
+        <div class="feature">
+            <h3>AI-Powered Chatbot</h3>
+            <p>Automate client interactions, reminders, and FAQs—available 24/7.</p>
+        </div>
+        <div class="feature">
+            <h3>Real-Time Dashboards</h3>
+            <p>View key performance metrics and make data-driven decisions instantly.</p>
+        </div>
+        <div class="feature">
+            <h3>Workflow Optimization</h3>
+            <p>Reduce admin burden and streamline your daily operations.</p>
+        </div>
+        <div class="feature">
+            <h3>Complete Pet Profiles</h3>
+            <p>Access health records, appointments, and care history in one place.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pricing" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing-grid">
+        <div class="pricing-plan">
+            <h3>Starter</h3>
+            <p>$49/month</p>
+            <p>Includes chatbot, dashboard, and basic reporting.</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Professional</h3>
+            <p>$99/month</p>
+            <p>Includes everything in Starter + workflow automation and integrations.</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Enterprise</h3>
+            <p>Custom</p>
+            <p>For larger practices, includes custom solutions and dedicated support.</p>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form" action="#" method="POST">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="clinic">Clinic Name</label>
+        <input type="text" id="clinic" name="clinic">
+
+        <label for="pms">Current PMS</label>
+        <input type="text" id="pms" name="pms">
+
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+</body>
+</html>
