@@ -9,28 +9,117 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: #ffffff; color: #333; line-height: 1.6; }
-        header, section { padding: 60px 20px; text-align: center; }
-        header { background-color: #f7faff; }
-        header h1 { font-size: 3em; color: #2b7a78; }
-        header p { font-size: 1.25em; margin: 20px 0; }
-        .cta-button { background-color: #2b7a78; color: white; padding: 14px 28px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; text-decoration: none; }
-        section.features, section.about, section.pricing, section.contact { background: #f0f4f8; }
-        section h2 { font-size: 2em; margin-bottom: 40px; }
-        .feature-grid, .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-        .feature, .pricing-plan { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .feature h3, .pricing-plan h3 { color: #2b7a78; margin-bottom: 10px; }
-        .about p { max-width: 800px; margin: 0 auto 20px; font-size: 1.1em; }
-        .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
-        .contact-form label { display: block; margin-bottom: 5px; margin-top: 20px; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; }
-        .contact-form button { background-color: #2b7a78; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
+
+        header {
+            background-color: #e6f0fa;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+
+        .tagline {
+            font-size: 2em;
+            color: #1d4e89;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            background-color: #1d4e89;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 30px;
+            display: inline-block;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        section.features, section.about, section.pricing, section.contact {
+            background: #f0f4f8;
+        }
+
+        section h2 {
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+
+        .feature-grid, .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature, .pricing-plan {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .feature h3, .pricing-plan h3 {
+            color: #1d4e89;
+            margin-bottom: 10px;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 1.1em;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #1d4e89;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>FetchCare Solutions</h1>
-    <p>Smarter Tools. Healthier Pets.</p>
+    <div class="logo-container">
+        <img src="C:\Users\micha\OneDrive\Desktop\fetchcare-site\SmartFetchLogo.png" alt="FetchCare Solutions Logo">
+        <div class="tagline">Smarter Tools. Healthier Pets.</div>
+    </div>
     <a class="cta-button" href="#contact">Book a Demo</a>
 </header>
 
