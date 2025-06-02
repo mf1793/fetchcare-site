@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FetchCare Mobile | Vet Care at Your Doorstep</title>
+  <meta name="description" content="FetchCare Mobile delivers veterinary care directly to your home in DFW. Book your visit today." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            fetchcare: {
+              DEFAULT: '#0076CE',
+              light: '#E0F0FF',
+              dark: '#004A99'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-800 font-inter">
+
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-12 py-4 border-b shadow-sm sticky top-0 bg-white z-50">
+    <div class="flex items-center gap-3">
+      <img src="FetchCare_Web_Emblem.png" alt="FetchCare Logo" class="h-10 w-auto" />
+      <span class="text-xl font-semibold text-fetchcare hidden sm:inline">FetchCare Mobile</span>
+    </div>
+    <div class="hidden md:flex gap-8 text-sm font-medium">
+      <a href="index.html" class="hover:text-fetchcare transition">Back to Home</a>
+      <a href="#services" class="hover:text-fetchcare transition">Services</a>
+      <a href="#booking" class="hover:text-fetchcare transition">Book Visit</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="bg-fetchcare.light py-20 text-center px-4">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">FetchCare Mobile</h1>
+      <p class="text-lg text-gray-700 mb-4">
+        Our mobile veterinary practice brings top-tier care right to your doorstep. Less stress. More connection.
+      </p>
+      <img src="https://source.unsplash.com/800x400/?veterinarian,dog" alt="Vet with dog" class="rounded-lg shadow-md mx-auto mt-6" />
+    </div>
+  </header>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-6">What We Offer</h2>
+    <div class="grid md:grid-cols-3 gap-6 text-left text-gray-700 text-lg">
+      <div>
+        <span class="text-2xl">🏥</span>
+        <h3 class="font-semibold mt-2">At-Home Wellness Exams</h3>
+        <p>Full physical exams, routine checkups, and vaccinations in the comfort of your home.</p>
+      </div>
+      <div>
+        <span class="text-2xl">🔬</span>
+        <h3 class="font-semibold mt-2">Diagnostics & Labs</h3>
+        <p>On-site testing, lab draws, and diagnostic evaluations for early detection and care.</p>
+      </div>
+      <div>
+        <span class="text-2xl">❤️</span>
+        <h3 class="font-semibold mt-2">Gentle Compassionate Care</h3>
+        <p>Stress-free visits for pets and pet parents, with less anxiety and more personal connection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking" class="bg-fetchcare.light py-20 px-4 text-center">
+    <h2 class="text-3xl font-semibold mb-6">Schedule a Visit</h2>
+    <p class="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
+      Schedule your mobile veterinary visit using the Calendly tool below. We currently serve the Dallas–Fort Worth area.
+    </p>
+    <div class="max-w-3xl mx-auto">
+      <iframe src="https://calendly.com/fetchcaremobile/new-meeting" width="100%" height="700" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 px-6 max-w-5xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-10">What Pet Parents Are Saying</h2>
+    <div class="grid md:grid-cols-3 gap-8 text-left text-gray-700 text-base">
+      <div class="bg-white p-6 shadow rounded-lg">
+        <p>"Dr. Reid was amazing with our senior dog. So gentle and kind — we’ll never go back to a clinic!"</p>
+        <p class="mt-4 font-semibold text-fetchcare">— Jamie L.</p>
+      </div>
+      <div class="bg-white p-6 shadow rounded-lg">
+        <p>"Super easy to book, great communication, and my cat didn’t even flinch during the exam."</p>
+        <p class="mt-4 font-semibold text-fetchcare">— Alex M.</p>
+      </div>
+      <div class="bg-white p-6 shadow rounded-lg">
+        <p>"Finally! A vet who comes to me. I’m so impressed with the professionalism and care."</p>
+        <p class="mt-4 font-semibold text-fetchcare">— Sarah W.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-gray-50 py-20 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold mb-10">Frequently Asked Questions</h2>
+    <div class="text-left space-y-6">
+      <div>
+        <h3 class="font-semibold text-lg">💰 How much does a visit cost?</h3>
+        <p>The initial exam starts at $89. Additional services like vaccines or diagnostics are priced à la carte.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg">📍 What areas do you serve?</h3>
+        <p>We currently serve the greater Dallas–Fort Worth metroplex. Enter your ZIP when booking to confirm availability.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg">🩺 What types of services do you offer?</h3>
+        <p>Routine exams, vaccinations, diagnostics, minor illnesses, senior pet care, and end-of-life consultations.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg">🚑 Do you handle emergencies?</h3>
+        <p>No, we are not an emergency service. For urgent care, we recommend a local 24/7 animal hospital.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg">🔄 What if I need to cancel?</h3>
+        <p>You can reschedule or cancel up to 24 hours in advance directly through Calendly or by contacting us.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-sm text-gray-500">
+    © 2025 FetchCare Solutions. All rights reserved.
+  </footer>
+</body>
+</html>
