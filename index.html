@@ -1,175 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FetchCare Demo</title>
-  <link rel="icon" href="favicon.ico" />
-  <meta name="description" content="FetchCare helps veterinary clinics gain visibility and improve care with smart KPI dashboards. Join our early access program." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FetchCare Solutions — AI Insights for Veterinary Clinics</title>
+  <meta name="description" content="FetchCare Solutions helps veterinary clinics boost productivity and patient care with AI-powered analytics, dashboards, and actionable insights. Join our Early Adopter Pilot Program.">
+  <meta property="og:title" content="FetchCare Solutions — AI Insights for Veterinary Clinics" />
+  <meta property="og:description" content="AI-powered dashboards and insights for veterinary clinics. Join our Early Adopter Pilot Program." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="FetchCare_Logo.png" />
+  <link rel="icon" href="FetchCare_Logo.png" />
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #00102A;
-      color: #e5f2f9;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* ============================
+       Brand & Theme Variables
+       Replace these HEX values with exact palette from your logo
+    ============================ */
+    :root {
+      /* FetchCare palette (refined). Swap to exact logo hex when available */
+      --brand: #1B9DDD;        /* Primary brand */
+      --brand-600: #147FB3;    /* Hover/Darkened */
+      --brand-50: #E7F6FF;     /* Light tint backgrounds */
+      --ink: #0F172A;          /* Headings */
+      --ink-2: #334155;        /* Body */
+      --bg: #FFFFFF;           /* Page bg */
+      --muted: #64748B;        /* Muted text */
+      --card: #FFFFFF;         /* Card bg */
+      --ring: rgba(27,157,221,0.35); /* Focus ring matches brand */
+      --success: #16a34a;
+      --warning: #f59e0b;
     }
 
-    main.container {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: stretch;
-      justify-content: space-between;
-      gap: 3rem;
-      padding: 2rem;
+    /* Reset & base */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";color:var(--ink-2);background:var(--bg);line-height:1.6}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border:none;border-radius:999px;padding:.85rem 1.2rem;font-weight:600;cursor:pointer;transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease}
+    .btn:focus{outline:3px solid var(--ring);outline-offset:2px}
+    .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 18px rgba(46,139,192,.25)}
+    .btn-primary:hover{background:var(--brand-600);transform:translateY(-1px)}
+    .btn-secondary{background:#EEF2F7;color:var(--ink);}
+    .btn-secondary:hover{background:#E3E9F1;transform:translateY(-1px)}
+
+    /* Nav */
+    header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(160%) blur(12px);z-index:40;border-bottom:1px solid rgba(15,23,42,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;color:var(--ink)}
+    .brand img{width:36px;height:36px;border-radius:8px}
+    .nav-links{display:flex;align-items:center;gap:1rem}
+    .nav-links a{padding:.5rem .75rem;border-radius:10px}
+    .nav-links a:hover{background:var(--brand-50)}
+    .menu-toggle{display:none}
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:-20%;background:radial-gradient(60% 60% at 10% 0%, #C8E7F7 0%, rgba(200,231,247,0) 60%),radial-gradient(50% 40% at 100% 0%, #D6F2FF 0%, rgba(214,242,255,0) 70%)}
+    .hero .inner{position:relative;padding:72px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:36px}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;color:var(--brand-600);background:var(--brand-50);padding:.35rem .6rem;border-radius:999px;font-weight:700;font-size:.8rem}
+    h1{margin:.6rem 0 1rem;color:var(--ink);font-size:clamp(32px, 3.2vw, 48px);line-height:1.15}
+    .lede{font-size:1.05rem;color:#475569;max-width:60ch}
+    .cta-row{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem}
+    .hero-card{background:#fff;border:1px solid rgba(15,23,42,.06);border-radius:18px;box-shadow:0 10px 30px rgba(2,6,23,.08);padding:16px}
+
+    /* Sections */
+    section{scroll-margin-top:90px;padding:64px 0}
+    .section-title{color:var(--ink);font-size:clamp(22px,2.2vw,32px);margin:0 0 18px}
+    .muted{color:var(--muted)}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .feature{background:var(--card);border:1px solid rgba(15,23,42,.06);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:.6rem;box-shadow:0 10px 24px rgba(2,6,23,.06)}
+    .icon{width:36px;height:36px;border-radius:10px;background:var(--brand-50);display:grid;place-items:center}
+    .icon svg{width:20px;height:20px;fill:var(--brand-600)}
+
+    /* Showcase */
+    .showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .shot{border:1px solid rgba(15,23,42,.08);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(2,6,23,.06)}
+    .shot figcaption{padding:10px 12px;font-size:.9rem;color:#475569;border-top:1px solid rgba(15,23,42,.06)}
+    .placeholder{aspect-ratio:16/10;display:grid;place-items:center;background:repeating-linear-gradient(45deg,#f3f7fb,#f3f7fb 12px,#eef3f9 12px,#eef3f9 24px);color:#94a3b8}
+
+    /* Pilot */
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+    .card{background:#fff;border:1px solid rgba(15,23,42,.06);border-radius:16px;padding:18px;box-shadow:0 10px 24px rgba(2,6,23,.06)}
+
+    /* FAQ */
+    .faq{max-width:900px;margin:0 auto}
+    details{border:1px solid rgba(15,23,42,.08);border-radius:14px;padding:14px 16px;background:#fff;box-shadow:0 6px 16px rgba(2,6,23,.04)}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700;color:var(--ink)}
+    details[open]{border-color:var(--brand);}
+
+    /* Apply / Contact */
+    .form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .form .full{grid-column:1/-1}
+    .input{display:flex;flex-direction:column;gap:6px}
+    .input label{font-size:.9rem;color:#475569;font-weight:600}
+    .input input,.input select,.input textarea{border:1px solid #e2e8f0;border-radius:12px;padding:12px 12px;font-size:1rem;background:#fff}
+    .input input:focus,.input select:focus,.input textarea:focus{outline:3px solid var(--ring);border-color:var(--brand)}
+    .help{font-size:.85rem;color:#64748b}
+
+    /* Footer */
+    footer{padding:36px 0;border-top:1px solid rgba(15,23,42,.06);background:#fafcff;color:#475569}
+    .foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:space-between}
+
+    /* Utilities */
+    .text-center{text-align:center}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border-radius:999px;background:#ecfeff;color:#0e7490;font-weight:700;font-size:.8rem}
+    .spacer{height:18px}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero .inner{grid-template-columns:1fr;gap:10px;padding:52px 0}
+      .features{grid-template-columns:1fr 1fr}
+      .showcase{grid-template-columns:1fr 1fr}
+      .benefits{grid-template-columns:1fr 1fr}
+      .form{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .menu-toggle{display:inline-flex}
     }
-
-    .hero-left {
-      flex: 1;
-      min-width: 300px;
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .hero-left img {
-      max-width: 260px;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin-bottom: 0.75rem;
-      filter: drop-shadow(0 0 10px rgba(0, 183, 255, 0.3));
-    }
-
-    .hero-left h1 {
-      font-size: 2.8rem;
-      font-weight: 600;
-      margin: 0.25rem 0 1.25rem 0;
-      color: #ffffff;
-    }
-
-    .hero-left p {
-      font-size: 1.15rem;
-      color: #b6c9d6;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-      max-width: 90%;
-    }
-
-    .cta-button {
-      background-color: #1da1f2;
-      color: white;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 6px;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    .cta-button:hover {
-      transform: scale(1.05);
-      background-color: #0d8ce0;
-      box-shadow: 0 4px 12px rgba(29, 161, 242, 0.3);
-    }
-
-    .cta-button .cta-arrow {
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-
-    .cta-button:hover .cta-arrow {
-      transform: translateX(4px);
-    }
-
-    .trust-line {
-      margin-top: 1rem;
-      color: #85a9c9;
-      font-size: 0.95rem;
-    }
-
-    .hero-right {
-      flex: 1;
-      position: relative;
-      text-align: center;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-right::before {
-      content: "";
-      position: absolute;
-      width: 80%;
-      height: 100%;
-      top: 0;
-      left: 10%;
-      background: radial-gradient(circle at center, rgba(29, 161, 242, 0.1), transparent 70%);
-      z-index: 0;
-      filter: blur(60px);
-    }
-
-    .hero-right img {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 768px) {
-      main.container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-left,
-      .hero-right {
-        max-width: 100%;
-      }
-
-      .hero-left img {
-        margin: 0 auto 1rem auto;
-      }
-
-      .hero-left p {
-        max-width: 100%;
-      }
-
-      .hero-right img {
-        max-width: 95%;
-        margin-top: 2rem;
-      }
+    @media (max-width: 560px){
+      .features,.showcase,.benefits{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <div class="hero-left">
-      <img src="fetchcare-logo.png" alt="FetchCare Solutions Logo - Veterinary Analytics Software" />
-      <h1>Smarter Clinics Start Here.</h1>
-      <p>
-        Veterinary care meets modern intelligence. FetchCare transforms practice data into
-        <strong>precise, actionable insights</strong> — empowering smarter care at every level.
-      </p>
-      <a href="https://calendly.com/fetchcaresolutions/new-meeting" class="cta-button">
-        → <span class="cta-arrow">Join Early Access</span>
+  <!-- ============================
+       Navigation
+  ============================ -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="FetchCare Solutions home">
+        <!-- Replace src with your logo path. Keep file beside this HTML or adjust path -->
+        <img src="FetchCare_Logo.png" alt="FetchCare Solutions logo" />
+        <span>FetchCare Solutions</span>
       </a>
-      <p class="trust-line">Trusted by forward-thinking veterinary clinics.</p>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#pilot">Pilot Program</a>
+        <a href="#showcase">Screenshots</a>
+        <a href="#faq">FAQ</a>
+        <a href="#apply">Contact</a>
+        <a class="btn btn-primary" href="#apply">Apply to Pilot</a>
+      </nav>
+      <button class="btn btn-secondary menu-toggle" aria-label="Open menu" onclick="document.getElementById('mobile-menu').showModal()">Menu</button>
     </div>
-    <div class="hero-right">
-      <img src="dashboard-preview.png" alt="FetchCare KPI Dashboard Preview" />
+  </header>
+
+  <dialog id="mobile-menu" style="border:none;border-radius:16px;max-width:520px;width:92%;padding:0;box-shadow:0 24px 60px rgba(2,6,23,.28)">
+    <div style="padding:14px 16px;border-bottom:1px solid rgba(15,23,42,.06);display:flex;align-items:center;justify-content:space-between">
+      <div class="brand"><img src="FetchCare_Logo.png" alt=""/><span>FetchCare Solutions</span></div>
+      <form method="dialog"><button class="btn btn-secondary">Close</button></form>
+    </div>
+    <div style="display:flex;flex-direction:column;padding:14px 16px;gap:8px">
+      <a href="#features" onclick="mobileMenu.close()">Features</a>
+      <a href="#pilot" onclick="mobileMenu.close()">Pilot Program</a>
+      <a href="#showcase" onclick="mobileMenu.close()">Screenshots</a>
+      <a href="#faq" onclick="mobileMenu.close()">FAQ</a>
+      <a href="#apply" onclick="mobileMenu.close()">Contact</a>
+      <a class="btn btn-primary" href="#apply" onclick="mobileMenu.close()">Apply to Pilot</a>
+    </div>
+  </dialog>
+
+  <!-- ============================
+       Hero
+  ============================ -->
+  <main id="top" class="hero">
+    <div class="container inner">
+      <div>
+        <span class="eyebrow">AI-Powered Insights for Veterinary Clinics</span>
+        <h1>Smarter Insights. Better Care. Stronger Clinics.</h1>
+        <p class="lede">FetchCare Solutions helps veterinary clinics boost productivity and deliver better patient care through AI-powered analytics and actionable insights — without switching your practice management system.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#apply">Join Our Early Adopter Program</a>
+          <!-- Optional: swap this link to your own Calendly -->
+          <a class="btn btn-secondary" href="https://calendly.com/fetchcaremobile/new-meeting" target="_blank" rel="noopener">Book a Discovery Call</a>
+        </div>
+        <div class="spacer"></div>
+        <div class="pill" title="Beta program">Early Access • Preferred Pricing After Pilot</div>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <!-- Hero visual: replace image below with a marquee dashboard screenshot when ready -->
+        <img src="screenshot-hero.png" alt="Dashboard preview placeholder" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder',innerText:'Add screenshot-hero.png beside this HTML'}))" />
+      </div>
     </div>
   </main>
+
+  <!-- ============================
+       About / Features
+  ============================ -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">What You Get with FetchCare</h2>
+      <p class="muted">Built for practice managers and clinic owners who want clarity, control, and continuous improvement.</p>
+      <div class="spacer"></div>
+      <div class="features">
+        <article class="feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 3h18v2H3zM5 7h2v14H5zM11 7h2v10h-2zM17 7h2v6h-2z"/></svg>
+          </div>
+          <h3>Performance Dashboards</h3>
+          <p>Track revenue, appointment utilization, client retention, and more — in one clean view.</p>
+        </article>
+        <article class="feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l2.39 4.84L20 9.27l-3.9 3.8.92 5.36L12 16.9l-5.02 2.64.92-5.36L4 9.27l5.61-1.43L12 3z"/></svg>
+          </div>
+          <h3>AI Insights & Actions</h3>
+          <p>Move from metrics to momentum with recommendations that drive measurable outcomes.</p>
+        </article>
+        <article class="feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7h4v2H4v6h4v2H2V7h2zm18 0v10h-2v-2h-8v2H8V7h4v2h8V7h2zm-10 6h8v-4h-8v4z"/></svg>
+          </div>
+          <h3>Seamless Integrations</h3>
+          <p>Connect to your existing PIMS — no disruptive system changes required.</p>
+        </article>
+        <article class="feature">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 21c-4.97-4.03-8-7.34-8-11a6 6 0 0 1 12 0c0 3.66-3.03 6.97-8 11zm0-13a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+          </div>
+          <h3>Clinic Health Score</h3>
+          <p>Get an at-a-glance snapshot of performance to focus your day where it matters most.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Pilot Program
+  ============================ -->
+  <section id="pilot" style="background:linear-gradient(180deg,#F8FBFF, #FFFFFF)">
+    <div class="container">
+      <h2 class="section-title">Early Adopter Pilot Program</h2>
+      <p class="muted">Join a select group of clinics shaping the roadmap. Participation is free; you provide feedback. In return you get preferred pricing after the pilot.</p>
+      <div class="benefits">
+        <div class="card"><strong>Early Access</strong><br><span class="muted">Be first to new features and enhancements.</span></div>
+        <div class="card"><strong>Direct Influence</strong><br><span class="muted">Your feedback drives what we build next.</span></div>
+        <div class="card"><strong>Preferred Pricing</strong><br><span class="muted">Lock in VIP pricing after the pilot ends.</span></div>
+      </div>
+      <div class="spacer"></div>
+      <a class="btn btn-primary" href="#apply">Apply to Join</a>
+    </div>
+  </section>
+
+  <!-- ============================
+       Screenshots / Showcase
+  ============================ -->
+  <section id="showcase">
+    <div class="container">
+      <h2 class="section-title">See FetchCare in Action</h2>
+      <p class="muted">Replace the placeholders below with your UI/UX screenshots (PNG/JPG). Keep filenames beside this HTML to avoid path issues.</p>
+      <div class="spacer"></div>
+      <div class="showcase">
+        <figure class="shot">
+          <img src="screenshot-1.png" alt="Financial KPIs dashboard" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder',innerText:'Add screenshot-1.png'}))">
+          <figcaption>Track Financial Performance</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="screenshot-2.png" alt="Scheduling and utilization chart" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder',innerText:'Add screenshot-2.png'}))">
+          <figcaption>Monitor Scheduling & Utilization</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="screenshot-3.png" alt="Client retention metrics" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder',innerText:'Add screenshot-3.png'}))">
+          <figcaption>Understand Client Retention</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="screenshot-4.png" alt="AI insights and suggestions" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'placeholder',innerText:'Add screenshot-4.png'}))">
+          <figcaption>AI-Powered Recommendations</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Testimonials (placeholder)
+  ============================ -->
+  <section>
+    <div class="container text-center">
+      <span class="pill">Coming Soon</span>
+      <h2 class="section-title">What Pilot Clinics Are Saying</h2>
+      <p class="muted">We’ll showcase quotes and outcomes from early adopters here as pilots complete.</p>
+    </div>
+  </section>
+
+  <!-- ============================
+       FAQ
+  ============================ -->
+  <section id="faq" style="background:#f8fafc">
+    <div class="container faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <details>
+        <summary>How much does FetchCare cost?</summary>
+        <div class="muted">The Early Adopter Pilot Program is free. After the pilot, clinics receive preferred pricing to continue using FetchCare.</div>
+      </details>
+      <details>
+        <summary>Do I need to switch from my current practice management system?</summary>
+        <div class="muted">No. FetchCare integrates with your existing PIMS to enhance your workflows — not replace them.</div>
+      </details>
+      <details>
+        <summary>How long does setup take?</summary>
+        <div class="muted">Our team helps you get started quickly. Most clinics are up and running in just a few hours.</div>
+      </details>
+      <details>
+        <summary>What if we decide not to continue after the pilot?</summary>
+        <div class="muted">No problem — opting out is easy and there are no obligations.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============================
+       Apply / Contact (Netlify Form)
+  ============================ -->
+  <section id="apply">
+    <div class="container">
+      <h2 class="section-title">Apply to Join the Pilot</h2>
+      <p class="muted">Tell us a bit about your clinic. We’ll follow up within 1–2 business days.</p>
+
+      <!-- Netlify form: set name and add hidden input. To enable spam protection, add data-netlify-recaptcha="true" -->
+      <form class="form" name="pilot-application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="pilot-application" />
+        <p style="display:none">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="input">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" autocomplete="name" required />
+        </div>
+        <div class="input">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="input">
+          <label for="clinic">Clinic Name</label>
+          <input id="clinic" name="clinic" required />
+        </div>
+        <div class="input">
+          <label for="role">Your Role</label>
+          <input id="role" name="role" placeholder="Practice Manager, Owner, DVM, etc." />
+        </div>
+        <div class="input">
+          <label for="pims">Current PIMS</label>
+          <input id="pims" name="pims" placeholder="ezyVet, AVImark, Cornerstone, etc." />
+        </div>
+        <div class="input">
+          <label for="size">Clinic Size</label>
+          <select id="size" name="size">
+            <option value="">Select…</option>
+            <option>Solo provider</option>
+            <option>2–4 providers</option>
+            <option>5–9 providers</option>
+            <option>10+ providers</option>
+          </select>
+        </div>
+        <div class="input full">
+          <label for="message">Goals & Focus Areas</label>
+          <textarea id="message" name="message" rows="4" placeholder="What would you like to improve? Scheduling, revenue, client retention, inventory, etc."></textarea>
+        </div>
+        <div class="input full">
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+          <span class="help">Prefer to talk live? <a href="https://calendly.com/fetchcaremobile/new-meeting" target="_blank" rel="noopener" style="text-decoration:underline">Book a call</a>.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================
+       Footer
+  ============================ -->
+  <footer>
+    <div class="container foot">
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <img src="FetchCare_Logo.png" width="28" height="28" alt="FetchCare logo" />
+        <span>© <span id="year"></span> FetchCare Solutions</span>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#top">Back to top</a>
+        <a href="#" aria-disabled="true" style="opacity:.6;pointer-events:none">Privacy</a>
+        <a href="#" aria-disabled="true" style="opacity:.6;pointer-events:none">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu helper
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Smooth scrolling for hash links (native CSS works in most browsers, this is a safety net)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length > 1){
+          const el = document.querySelector(id);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        }
+      })
+    });
+
+    // Add small shadow to header when scrolling
+    const header = document.querySelector('header');
+    const onScroll = () => {
+      if(window.scrollY > 6){ header.style.boxShadow = '0 4px 16px rgba(2,6,23,.06)'; }
+      else{ header.style.boxShadow = 'none'; }
+    };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  </script>
 </body>
 </html>
