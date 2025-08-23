@@ -27,7 +27,7 @@
 
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";color:var(--ink-2);background:var(--bg);line-height:1.6}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans";color:var(--ink-2);background:var(--bg);line-height:1.6}
     img{max-width:100%;display:block}
     a{color:inherit;text-decoration:none}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
@@ -46,9 +46,8 @@
     .nav-links{display:flex;align-items:center;gap:1rem}
     .nav-links a{padding:.5rem .75rem;border-radius:10px}
     .nav-links a:hover{background:var(--brand-50)}
-    .menu-toggle{display:none}
 
-    .hero .inner{position:relative;padding:72px 0;display:grid;grid-template-columns:1fr 1.25fr;gap:36px;max-width:1280px;margin:0 auto}
+    .hero .inner{padding:72px 0;display:grid;grid-template-columns:1fr 1.25fr;gap:36px;max-width:1280px;margin:0 auto}
     .hero-card{padding:0}
     .hero-card img{width:100%;height:auto;display:block}
     .eyebrow{display:inline-flex;align-items:center;gap:.5rem;color:var(--brand-600);background:var(--brand-50);padding:.35rem .6rem;border-radius:999px;font-weight:700;font-size:.8rem}
@@ -60,7 +59,21 @@
     .section-title{color:var(--ink);font-size:clamp(22px,2.2vw,32px);margin:0 0 18px}
     .muted{color:var(--muted)}
 
-    /* ... keep rest of your original CSS (features, showcase, FAQ, form, footer) ... */
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .feature{background:var(--card);border:1px solid rgba(15,23,42,.06);border-radius:16px;padding:18px;box-shadow:0 6px 16px rgba(2,6,23,.06)}
+    .icon{width:36px;height:36px;border-radius:10px;background:var(--brand-50);display:grid;place-items:center}
+    .icon svg{width:20px;height:20px;fill:var(--brand-600)}
+
+    .showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .shot{border:1px solid rgba(15,23,42,.08);border-radius:16px;overflow:hidden;box-shadow:0 6px 16px rgba(2,6,23,.06)}
+    .shot figcaption{padding:10px 12px;font-size:.9rem;color:#475569;border-top:1px solid rgba(15,23,42,.06)}
+    .placeholder{aspect-ratio:16/10;display:grid;place-items:center;background:#f1f5f9;color:#94a3b8}
+
+    details{border:1px solid rgba(15,23,42,.08);border-radius:14px;padding:14px 16px;background:#fff}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700;color:var(--ink)}
+
+    footer{padding:36px 0;border-top:1px solid rgba(15,23,42,.06);background:#fafcff;color:#475569;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
   </style>
 </head>
 <body>
@@ -100,7 +113,80 @@
     </div>
   </main>
 
-  <!-- === Features, Pilot Program, Screenshots, FAQ, Contact Form, Footer === -->
-  <!-- Keep the rest of the site exactly as in the previous version you pasted, unchanged -->
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">What You Get with FetchCare</h2>
+      <p class="muted">Built for practice managers and clinic owners who want clarity, control, and continuous improvement.</p>
+      <div class="features">
+        <article class="feature"><div class="icon">📊</div><h3>Performance Dashboards</h3><p>Track revenue, utilization, client retention, and more.</p></article>
+        <article class="feature"><div class="icon">🤖</div><h3>AI Insights & Actions</h3><p>Turn raw data into clear, actionable recommendations.</p></article>
+        <article class="feature"><div class="icon">🔗</div><h3>Seamless Integrations</h3><p>Connects to your existing PIMS without disruption.</p></article>
+        <article class="feature"><div class="icon">❤️</div><h3>Clinic Health Score</h3><p>Get an at-a-glance view of overall performance.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pilot Program -->
+  <section id="pilot" style="background:#f8fafc">
+    <div class="container">
+      <h2 class="section-title">Early Adopter Pilot Program</h2>
+      <p class="muted">Join a select group of clinics shaping our roadmap. Free during pilot; feedback required.</p>
+      <a class="btn btn-primary" href="#apply">Apply to Join</a>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section id="showcase">
+    <div class="container">
+      <h2 class="section-title">See FetchCare in Action</h2>
+      <div class="showcase">
+        <figure class="shot"><img src="screenshot-1.png" alt="Financial KPIs" /><figcaption>Track Financial Performance</figcaption></figure>
+        <figure class="shot"><img src="screenshot-2.png" alt="Scheduling" /><figcaption>Monitor Scheduling & Utilization</figcaption></figure>
+        <figure class="shot"><img src="screenshot-3.png" alt="Client Retention" /><figcaption>Understand Client Retention</figcaption></figure>
+        <figure class="shot"><img src="screenshot-4.png" alt="AI Insights" /><figcaption>AI-Powered Recommendations</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <details><summary>How much does FetchCare cost?</summary><p>Free during pilot. Preferred pricing afterwards.</p></details>
+      <details><summary>Do I need to switch PIMS?</summary><p>No, FetchCare integrates with your existing system.</p></details>
+      <details><summary>How long does setup take?</summary><p>Most clinics are live in just a few hours.</p></details>
+      <details><summary>What if we opt out after pilot?</summary><p>You can stop anytime with no obligations.</p></details>
+    </div>
+  </section>
+
+  <!-- Apply / Contact -->
+  <section id="apply">
+    <div class="container">
+      <h2 class="section-title">Apply to Join the Pilot</h2>
+      <form name="pilot-application" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="pilot-application" />
+        <p><label>Name <input type="text" name="name" required></label></p>
+        <p><label>Email <input type="email" name="email" required></label></p>
+        <p><label>Clinic <input type="text" name="clinic" required></label></p>
+        <p><label>Message <textarea name="message"></textarea></label></p>
+        <p><button class="btn btn-primary" type="submit">Submit Application</button></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <img src="FetchCare_Logo.png" width="28" alt="Logo" />
+        <span>© <span id="year"></span> FetchCare Solutions</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
